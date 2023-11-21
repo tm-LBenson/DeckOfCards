@@ -25,21 +25,26 @@ class Deck:
             self.deck = self.deck[number:]
             return dealt_cards
         else:
-            raise ValueError("Not enough cards in the deck to deal.")
+            return None
 
     def count(self):
         return len(self.deck)
 
 def main():
     deck = Deck()
-    print(f"I have shuffled a deck of 52 cards.")
-    num_cards = 5
-    dealt_cards = deck.deal(num_cards)
-    print(f"Here are your cards:")
-    for card in dealt_cards:
-        print(card)
-    print(f"There are {deck.count()} cards left in the deck.")
-    print("Good luck!\nPress any key to continue . . .")
+    print("I have shuffled a deck of 52 cards.")
+    while deck.count() > 0:
+        num_cards = min(5, deck.count())
+        dealt_cards = deck.deal(num_cards)
+        print("\nHere are your cards:")
+        for card in dealt_cards:
+            print(card)
+        print(f"There are {deck.count()} cards left in the deck.")
+        if deck.count() > 0:
+            input("Press any key to continue . . .")
+        else:
+            print("No more cards left in the deck.")
+    input("Press any key to end the game.")
 
 if __name__ == "__main__":
     main()
