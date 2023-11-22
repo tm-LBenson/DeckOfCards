@@ -1,3 +1,7 @@
+# Lewis Benson
+# CIS261
+# DeckOfCards
+
 import random
 
 class Card:
