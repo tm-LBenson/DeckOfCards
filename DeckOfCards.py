@@ -38,17 +38,29 @@ def main():
     deck = Deck()
     print("I have shuffled a deck of 52 cards.")
     while deck.count() > 0:
-        num_cards = min(5, deck.count())
+        try:
+            num_cards = int(input("Enter the number of cards to deal (or 0 to exit): "))
+            if num_cards == 0:
+                break
+            elif num_cards > deck.count():
+                print(f"Cannot deal {num_cards} cards. Only {deck.count()} cards left in the deck.")
+                continue
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+
         dealt_cards = deck.deal(num_cards)
-        print("\nHere are your cards:")
+        print(f"\nHere are your {num_cards} cards:")
         for card in dealt_cards:
             print(card)
         print(f"There are {deck.count()} cards left in the deck.")
+
         if deck.count() > 0:
-            input("Press any key to continue . . .")
+            input("Press \"enter\" to continue . . .")
         else:
             print("No more cards left in the deck.")
-    input("Press any key to end the game.")
+    print("Game ended.")
 
 if __name__ == "__main__":
     main()
+
